@@ -17,4 +17,4 @@ function lenghtString(string , maxLenght)
 }
 
 randomNumbers(5,12);
-lenghtString(TestWord,10);
+lenghtString('TestWord',10);
