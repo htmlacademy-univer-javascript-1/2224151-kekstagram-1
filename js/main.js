@@ -7,7 +7,7 @@ function randomNumbers(min, max)
   return Math.floor(Math.random() * (max - min + 1)) + min;
   }
   else
-  console.log('В переданном диапазоне нет подходящих чисел')
+  return "range!!!";
 }
 
 
@@ -19,3 +19,5 @@ function lenghtString(string , maxLenght)
   return true
 }
 
+randomNumbers(5,12);
+lenghtString(TestWord,10);
