@@ -13,10 +13,7 @@ function randomNumbers(min, max)
 
 function lenghtString(string , maxLenght)
 {
-  if( string.length > maxLenght)
-  return false
-  else
-  return true
+  return string.lenght <=maxLenght;
 }
 
 randomNumbers(5,12);
