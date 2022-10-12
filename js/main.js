@@ -1,58 +1,73 @@
 
 const description = [
-    'Супер',
-    'Красота',
-]
+  'Супер',
+  'Красота',
+];
 
 const message = [
-    'Всё отлично!',
-    'В целом всё неплохо. Но не всё.',
-    'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-    'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-    'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-    'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
-
-]
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
+];
 
 const nameY = [
-    'Александра',
-    'Вера',
-    'Андрей',
-    'Антон',
-]
+  'Александра',
+  'Вера',
+  'Андрей',
+  'Антон',
+];
 
 const data =25;
+const commentsId =[];
 
 
 const getRandomPositiveInteger = (a, b) => {
-    const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-    const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
-    const result = Math.random() * (upper - lower + 1) + lower;
-    return Math.floor(result);
-  };
+  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
+};
 
-const getRandomArrayElement = (elements) => {
-    return elements[getRandomPositiveInteger(0, elements.length - 1)];
-  };
+const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length - 1)];
 
-const comment = {
-    id: getRandomPositiveInteger(1,25),
-    avatar: `img/avatar-${getRandomPositiveInteger(1,6)}.svg`,
-    message: getRandomArrayElement(message),
-    name: getRandomArrayElement(nameY)
+// eslint-disable-next-line camelcase
+const max_comment_id = 1000;
 
+function generateCommentId () {
+  let newId =0;
+  do{
+    newId = getRandomPositiveInteger(1,max_comment_id);
+  }
+  while (Array.prototype.indexOf(commentsId,newId) !==-1);
+  commentsId.push(newId);
+  return newId;
 }
 
-const createDescription = () => {
-    return {
-      id: getRandomPositiveInteger(1,25),
-      url: `photos/${id}.jpg`,
-      description: getRandomArrayElement(description),
-      likes: Math.random(15,200),
-      comment: comment
-    };
+
+function createComment (){
+  return {
+    id: generateCommentId(),
+    avatar : `img/avatar${getRandomPositiveInteger(1,6)}.svg `,
+    message : getRandomArrayElement(message),
+    name: getRandomArrayElement(nameY)
   };
+}
 
-const generateData = Array.from({length: data}, createDescription )
+function createPicture (index) {
+  return {
+    id: index+1,
+    url: `photos/${index +1}.jpg`,
+    description : getRandomArrayElement(description),
+    likes: getRandomPositiveInteger(15,200),
+    comments: createComment()
+  };
+}
 
-console.log(generateData)
+const generateData = Array.from({length: data},(cur,i) => createPicture(i) );
+
+// eslint-disable-next-line no-console
+console.log(generateData);
+
