@@ -33,7 +33,7 @@ const getRandomPositiveInteger = (a, b) => {
 
 const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length - 1)];
 
-// eslint-disable-next-line camelcase
+
 const max_comment_id = 1000;
 
 function generateCommentId () {
@@ -46,28 +46,33 @@ function generateCommentId () {
   return newId;
 }
 
+const min_image =1;
+const max_image =6;
 
 function createComment (){
   return {
     id: generateCommentId(),
-    avatar : `img/avatar${getRandomPositiveInteger(1,6)}.svg `,
+    avatar : `img/avatar${getRandomPositiveInteger(min_image,max_image)}.svg `,
     message : getRandomArrayElement(message),
     name: getRandomArrayElement(nameY)
   };
 }
+
+
+const min_likes = 15;
+const max_likes = 200;
 
 function createPicture (index) {
   return {
     id: index+1,
     url: `photos/${index +1}.jpg`,
     description : getRandomArrayElement(description),
-    likes: getRandomPositiveInteger(15,200),
+    likes: getRandomPositiveInteger(min_likes,max_likes),
     comments: createComment()
   };
 }
 
-const generateData = Array.from({length: data},(cur,i) => createPicture(i) );
+const generateDataPicture = Array.from({length: data},createPicture() );
 
-// eslint-disable-next-line no-console
-console.log(generateData);
+console.log(generateDataPicture);
 
