@@ -1,21 +1,22 @@
-import {generateData} from './data.js';
-
-const userDialog = document.querySelector('#picture');
-userDialog.classList.remove('hidden');
-
-const pict = userDialog.querySelector('.pictures');
-const pictTemp = document.querySelector('#DocumentFragment').content;
-
-const simPicture = generateData();
-
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const pictures = document.querySelector('.pictures');
 const pictFragment = document.createDocumentFragment();
 
-simPicture.forEach((picture) => {
-  const wizardElement = pictTemp.cloneNode(true);
-  wizardElement.querySelector('.src').textContent = picture.url;
-  wizardElement.querySelector('.picture__likes').textContent = picture.likes;
-  wizardElement.querySelector('.picture__comments').textContent = picture.comments;
-  pict.appendChild(wizardElement);
-});
+const renderPicture = (picture) => {
+  const pictElement = pictureTemplate.cloneNode(true);
 
-pict.appendChild(pictFragment);
+  pictElement.querySelector('.picture__img').src = picture.url;
+  pictElement.querySelector('.picture__comments').textContent = picture.comments.length;
+  pictElement.querySelector('.picture__likes').textContent = picture.likes;
+
+  return pictElement;
+};
+const initPictures = (images) => {
+  images.forEach((picture) => {
+    pictFragment.appendChild(renderPicture(picture));
+  });
+
+  pictures.appendChild(pictFragment);
+};
+
+export {initPictures};

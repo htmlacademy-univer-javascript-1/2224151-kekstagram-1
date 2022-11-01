@@ -1,4 +1,4 @@
 import {generateData} from './data.js';
+import {initPictures} from './popoup.js';
 
-// eslint-disable-next-line no-console
-console.log(generateData);
+initPictures(generateData);
