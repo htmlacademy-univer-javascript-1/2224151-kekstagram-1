@@ -1,8 +1,9 @@
-import addPictureEvent from './bigPicture.js';
+import {addPictureEvent} from './bigPicture.js';
 
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const pictures = document.querySelector('.pictures');
 const pictFragment = document.createDocumentFragment();
+
 
 const renderPicture = (picture) => {
   const pictElement = pictureTemplate.cloneNode(true);
@@ -11,17 +12,19 @@ const renderPicture = (picture) => {
   pictElement.querySelector('.picture__comments').textContent = picture.comments.length;
   pictElement.querySelector('.picture__likes').textContent = picture.likes;
 
-  addPictureEvent(pictElement, picture);
+  pictElement.addEventListener('click', () => {
+    addPictureEvent(pictElement,picture);
+  });
 
-  return pictElement;
+  pictFragment.appendChild(pictElement);
 };
 
 const initPictures = (images) => {
   images.forEach((picture) => {
-    pictFragment.appendChild(renderPicture(picture));
+    renderPicture(picture);
   });
 
-  pictures.appendChild(pictFragment);
+  return pictures.appendChild(pictFragment);
 };
 
 
