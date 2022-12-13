@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 import {getRandomArrayElement,getRandomPositiveInteger} from './util.js';
 
 const DESCRIPTION = [
@@ -56,10 +54,11 @@ function createPicture (index) {
     url: `photos/${index +1}.jpg`,
     DESCRIPTION : getRandomArrayElement(DESCRIPTION),
     likes: getRandomPositiveInteger(MIN_LIKES,MAX_LIKES),
-    comments: createComment()
+    comments: createComment(2)
   };
 }
 
+// eslint-disable-next-line no-unused-vars
 function lenghtString(string , maxLenght)
 {
   return string.lenght <=maxLenght;
