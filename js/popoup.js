@@ -11,7 +11,6 @@ const renderPicture = (picture) => {
   pictElement.querySelector('.picture__img').src = picture.url;
   pictElement.querySelector('.picture__comments').textContent = picture.comments.length;
   pictElement.querySelector('.picture__likes').textContent = picture.likes;
-
   pictElement.addEventListener('click', () => {
     addPictureEvent(pictElement,picture);
   });
