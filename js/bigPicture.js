@@ -22,8 +22,6 @@ const addPictureEvent = (picture, data) => {
   data.comments.forEach((comment) => {
     pictureComments.appendChild(getCommentItem(comment));
   });
-  bigPicture.querySelector('.social__comment-count').classList.add('hidden');
-  bigPicture.querySelector('.comments-loader').classList.add('hidden');
   document.querySelector('body').classList.add('modal-open');
 };
 
