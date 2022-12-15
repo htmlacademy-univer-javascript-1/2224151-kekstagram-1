@@ -1,4 +1,6 @@
 import { isEscapeKey } from './util.js';
+import { setDefoltScale } from './scale.js';
+
 
 const imageUploadStart = document.querySelector('.img-upload__start');
 const imageUploadOverlay = document.querySelector('.img-upload__overlay');
@@ -9,6 +11,7 @@ const imageUploadForm = document.querySelector('.img-upload__form');
 // eslint-disable-next-line no-unused-vars
 const imageUploadPreview = imageUploadOverlay.querySelector('.img-upload__preview');
 const effectLevelSlider = imageUploadForm.querySelector('.effect-level__slider');
+const photoEffectsPreview = imageUploadForm.querySelectorAll('.effects__preview');
 
 
 const deleteForm = () => {
@@ -40,6 +43,7 @@ const addForm = () => {
     effectLevelSlider.classList.add('hidden');
     document.body.classList.add('modal-open');
     listenerControl();
+    setDefoltScale();
   });
 };
 

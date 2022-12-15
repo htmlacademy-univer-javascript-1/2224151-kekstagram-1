@@ -520,6 +520,7 @@ main {
   display: block;
   max-width: 600px;
   max-height: 600px;
+
 }
 
 
@@ -545,6 +546,7 @@ main {
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 34px;
 
+
   -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
           transform: translateX(-50%);
@@ -555,7 +557,7 @@ main {
 }
 
 .effect-level .noUi-connects {
-  border-radius: 13px;
+  border-radius: 16px;
 }
 
 .effect-level .noUi-connect {
