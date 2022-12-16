@@ -1,7 +1,11 @@
 import './scale.js';
 import './effect.js';
-import {generateData} from './data.js';
 import {initPictures} from './popoup.js';
-import { addForm } from './form.js';
-initPictures(generateData);
-addForm();
+import { getData } from './api.js';
+import { onFail } from './util.js';
+
+getData(onSuccess, onFail);
+
+function onSuccess(data) {
+  initPictures(data);
+}

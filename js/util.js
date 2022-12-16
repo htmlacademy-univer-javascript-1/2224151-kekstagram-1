@@ -27,4 +27,8 @@ const showAlert = (message) => {
     alertContainer.remove();
   }, ALERT_SHOW_TIME);
 };
-export {getRandomArrayElement,getRandomPositiveInteger, isEscapeKey,showAlert };
+function onFail(err) {
+  showAlert(`Ошибка загрузки изображений - ${err.status}`);
+}
+
+export {getRandomArrayElement,getRandomPositiveInteger, isEscapeKey,showAlert, onFail };

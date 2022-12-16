@@ -100,23 +100,15 @@ export function resetEffectSettings() {
   updateSliderOptions(sliderOptions.NONE, DEFAULT_START_VALUE, 'none');
 }
 
+
 noUiSlider.create(sliderElement, {
   range: {
     min: 0,
     max: 100,
   },
   start: 100,
-  step: 0.1,
+  step: 1,
   connect: 'lower',
-  format: {
-    to: (value) => {
-      if (Number.isInteger(value)) {
-        return value.toFixed(0);
-      }
-      return value.toFixed(1);
-    },
-    from: (value) => parseFloat(value),
-  },
 });
 
 sliderElement.noUiSlider.on('update', (_, handle, unencoded) => {
@@ -124,6 +116,7 @@ sliderElement.noUiSlider.on('update', (_, handle, unencoded) => {
 
   effectLevelValue.setAttribute('value', unencoded[handle]);
 });
+
 
 effectsList.addEventListener('change', (evt) => {
   const target = evt.target;
