@@ -30,7 +30,7 @@ function showFirstComments(comments) {
   commentCount.firstChild.textContent = `${displayedComments.length  } из  `;
   pictureComments.appendChild(renderFirstComments);
 
-  if (displayedComments.length === comments.length) {
+  if (pictureComments.length === comments.length) {
     commentLoader.classList.add('hidden');
   }
 }
@@ -67,7 +67,6 @@ const EscapeKeyDown = (evt) => {
     bigPicture.classList.add('hidden');
     document.querySelector('body').classList.remove('modal-open');
   }
-  document.removeEventListener('keydown', EscapeKeyDown);
 };
 
 closeButton.addEventListener('click', () => {
