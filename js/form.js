@@ -1,16 +1,17 @@
 import { isEscapeKey } from './util.js';
 import { setDefoltScale } from './scale.js';
 
-
-const imageUploadStart = document.querySelector('.img-upload__start');
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 const imageUploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadFile = document.querySelector('#upload-file');
 const textDescription = document.querySelector('.text__description');
 const textHashtags = document.querySelector('.text__hashtags');
 const imageUploadForm = document.querySelector('.img-upload__form');
+const imageUploadInpuc = document.querySelector('.img-upload__input');
 // eslint-disable-next-line no-unused-vars
 const imageUploadPreview = imageUploadOverlay.querySelector('.img-upload__preview');
-const effectLevelSlider = imageUploadForm.querySelector('.effect-level__slider');
+const photoPreview = imageUploadForm.querySelector('.img-upload__preview img');
+const photoEffectsPreview = imageUploadForm.querySelectorAll('.effects__preview');
 
 
 const deleteForm = () => {
@@ -37,13 +38,28 @@ const listenerControl = () => {
 };
 
 const addForm = () => {
-  imageUploadStart.addEventListener('change', () => {
-    imageUploadOverlay.classList.remove('hidden');
-    effectLevelSlider.classList.add('hidden');
-    document.body.classList.add('modal-open');
-    listenerControl();
-    setDefoltScale();
-  });
+  imageUploadOverlay.classList.remove('hidden');
+  document.body.classList.add('modal-open');
+  listenerControl();
+  setDefoltScale();
 };
 
-export { addForm};
+imageUploadInpuc.addEventListener('change', (evt) => {
+  const file = evt.target.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+  if (matches) {
+    addForm();
+
+    const reader = new FileReader();
+
+    reader.addEventListener('load', () => {
+      photoPreview.src = reader.result;
+      photoEffectsPreview.forEach((preview) => {
+        preview.style.backgroundImage = `url('${reader.result}')`;
+      });
+    });
+
+    reader.readAsDataURL(file);
+  }
+});
