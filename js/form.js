@@ -11,7 +11,6 @@ const imageUploadForm = document.querySelector('.img-upload__form');
 // eslint-disable-next-line no-unused-vars
 const imageUploadPreview = imageUploadOverlay.querySelector('.img-upload__preview');
 const effectLevelSlider = imageUploadForm.querySelector('.effect-level__slider');
-const photoEffectsPreview = imageUploadForm.querySelectorAll('.effects__preview');
 
 
 const deleteForm = () => {
