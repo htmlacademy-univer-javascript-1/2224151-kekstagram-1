@@ -4,7 +4,6 @@ const photoPreview = document.querySelector('.img-upload__preview img');
 const effectsList = document.querySelector('.effects__list');
 const effectLevelValue = document.querySelector('.effect-level__value');
 
-
 let currentEffect = '';
 let effectUnitMeasure = '';
 
@@ -13,10 +12,10 @@ const sliderOptions = {
   'NONE': {
     RANGE: {
       MIN: 0,
-      MAX: 1,
+      MAX: 0,
     },
     START: 0,
-    STEP: 0.1,
+    STEP: 0,
     CURRENT_EFFECT: '',
     EFFECT_UNIT_MEASURE: '',
   },
@@ -25,7 +24,7 @@ const sliderOptions = {
       MIN: 0,
       MAX: 1,
     },
-    START: 0,
+    START: 1,
     STEP: 0.1,
     CURRENT_EFFECT: 'grayscale',
     EFFECT_UNIT_MEASURE: '',
@@ -35,7 +34,7 @@ const sliderOptions = {
       MIN: 0,
       MAX: 1,
     },
-    START: 0,
+    START: 1,
     STEP: 0.1,
     CURRENT_EFFECT: 'sepia',
     EFFECT_UNIT_MEASURE: '',
@@ -45,7 +44,7 @@ const sliderOptions = {
       MIN: 0,
       MAX: 100,
     },
-    START: 0,
+    START: 100,
     STEP: 1,
     CURRENT_EFFECT: 'invert',
     EFFECT_UNIT_MEASURE: '%',
@@ -55,7 +54,7 @@ const sliderOptions = {
       MIN: 0,
       MAX: 3,
     },
-    START: 0,
+    START: 3,
     STEP: 0.1,
     CURRENT_EFFECT: 'blur',
     EFFECT_UNIT_MEASURE: 'px',
@@ -65,7 +64,7 @@ const sliderOptions = {
       MIN: 1,
       MAX: 3,
     },
-    START: 0,
+    START: 3,
     STEP: 0.1,
     CURRENT_EFFECT: 'brightness',
     EFFECT_UNIT_MEASURE: '',
@@ -89,6 +88,7 @@ function updateSliderOptions({ RANGE: { MIN, MAX }, START, STEP, CURRENT_EFFECT,
     start: START,
     step: STEP,
   });
+
   sliderElement.noUiSlider.set(startValue);
   sliderContainer.style.display = display;
 }
@@ -100,23 +100,22 @@ export function resetEffectSettings() {
   updateSliderOptions(sliderOptions.NONE, DEFAULT_START_VALUE, 'none');
 }
 
-
 noUiSlider.create(sliderElement, {
+  connect: 'lower',
   range: {
     min: 0,
-    max: 100,
+    max: 1,
   },
-  start: 100,
-  step: 1,
-  connect: 'lower',
+  start: 0,
+  step: 0.1,
 });
+sliderContainer.style.display = 'none';
 
 sliderElement.noUiSlider.on('update', (_, handle, unencoded) => {
   photoPreview.style.filter = `${currentEffect}(${unencoded[handle]}${effectUnitMeasure})`;
 
   effectLevelValue.setAttribute('value', unencoded[handle]);
 });
-
 
 effectsList.addEventListener('change', (evt) => {
   const target = evt.target;
@@ -158,5 +157,3 @@ effectsList.addEventListener('change', (evt) => {
     updateSliderOptions(sliderOptions[targetEffect], DEFAULT_START_VALUE, 'block');
   }
 });
-
-
