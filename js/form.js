@@ -1,4 +1,6 @@
 import { isEscapeKey } from './util.js';
+import { setDefoltScale } from './scale.js';
+
 
 const imageUploadStart = document.querySelector('.img-upload__start');
 const imageUploadOverlay = document.querySelector('.img-upload__overlay');
@@ -40,6 +42,7 @@ const addForm = () => {
     effectLevelSlider.classList.add('hidden');
     document.body.classList.add('modal-open');
     listenerControl();
+    setDefoltScale();
   });
 };
 

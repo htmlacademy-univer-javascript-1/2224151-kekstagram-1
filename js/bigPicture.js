@@ -1,3 +1,5 @@
+
+
 const bigPicture = document.querySelector('.big-picture');
 const pictureComments = bigPicture.querySelector('.social__comments');
 const commentChild = pictureComments.children[0];

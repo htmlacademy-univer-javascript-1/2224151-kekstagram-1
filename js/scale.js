@@ -8,11 +8,14 @@ const MAX_SCALE_VALUE = 100;
 const DEFAULT_SCALE_STEP = 25;
 const DEFAULT_SCALE_VALUE = 100;
 
-scaleCounter.value = DEFAULT_SCALE_VALUE;
 
 function setScaleOnImg() {
   const currentValue = parseFloat(scaleCounter.value);
   photoPreview.style.transform = `scale(${currentValue / 100})`;
+}
+function setDefoltScale(){
+  scaleCounter.value = DEFAULT_SCALE_VALUE;
+  setScaleOnImg();
 }
 
 function prevScaleClickHandler() {
@@ -45,3 +48,5 @@ export function resetScaleModifier() {
 
 scaleMinusButton.addEventListener('click', prevScaleClickHandler);
 scalePlusButton.addEventListener('click', nextScaleClickHandler);
+
+export{setDefoltScale};

@@ -32,6 +32,7 @@
    overflow: hidden;
    z-index: 0;
  }
+
  .noUi-connect,
  .noUi-origin {
    will-change: transform;
@@ -303,3 +304,4 @@
    top: auto;
    right: 28px;
  }
+
