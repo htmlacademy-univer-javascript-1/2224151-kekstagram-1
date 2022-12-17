@@ -1,5 +1,5 @@
 const NUMBER_OF_RANDOM_PHOTOS = 10;
-
+const NUMBER_START =0;
 const filterContainer = document.querySelector('.img-filters');
 const filterButtons = [...document.querySelectorAll('.img-filters__button')];
 
@@ -8,7 +8,7 @@ export function filterByDefault(photos) {
 }
 
 export function filterByRandom(photos) {
-  return shuffleArray(photos).slice(0, NUMBER_OF_RANDOM_PHOTOS);
+  return shuffleArray(photos).slice(NUMBER_START, NUMBER_OF_RANDOM_PHOTOS);
 }
 
 export function filterByComments(photos) {
