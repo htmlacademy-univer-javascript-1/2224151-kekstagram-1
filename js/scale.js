@@ -11,7 +11,7 @@ const DEFAULT_SCALE_VALUE = 100;
 
 function setScaleOnImg() {
   const currentValue = parseFloat(scaleCounter.value);
-  photoPreview.style.transform = `scale(${currentValue / 100})`;
+  photoPreview.style.transform = `scale(${currentValue / DEFAULT_SCALE_VALUE})`;
 }
 function setDefoltScale(){
   scaleCounter.value = DEFAULT_SCALE_VALUE;

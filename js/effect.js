@@ -8,7 +8,7 @@ let currentEffect = '';
 let effectUnitMeasure = '';
 
 const DEFAULT_START_VALUE = 100;
-const sliderOptions = {
+const SLIDER_OPTIONS = {
   'NONE': {
     RANGE: {
       MIN: 0,
@@ -97,7 +97,7 @@ export function resetEffectSettings() {
   photoPreview.classList = '';
   photoPreview.style.filter = '';
 
-  updateSliderOptions(sliderOptions.NONE, DEFAULT_START_VALUE, 'none');
+  updateSliderOptions(SLIDER_OPTIONS.NONE, DEFAULT_START_VALUE, 'none');
 }
 
 noUiSlider.create(sliderElement, {
@@ -124,36 +124,36 @@ effectsList.addEventListener('change', (evt) => {
   if (target && target.value === 'none') {
     resetEffectSettings();
 
-    updateSliderOptions(sliderOptions[targetEffect], DEFAULT_START_VALUE, 'none');
+    updateSliderOptions(SLIDER_OPTIONS[targetEffect], DEFAULT_START_VALUE, 'none');
   }
 
   if (target && target.value === 'chrome') {
     setFilterClass('effects__preview--chrome');
 
-    updateSliderOptions(sliderOptions[targetEffect], DEFAULT_START_VALUE, 'block');
+    updateSliderOptions(SLIDER_OPTIONS[targetEffect], DEFAULT_START_VALUE, 'block');
   }
 
   if (target && target.value === 'sepia') {
     setFilterClass('effects__preview--sepia');
 
-    updateSliderOptions(sliderOptions[targetEffect], DEFAULT_START_VALUE, 'block');
+    updateSliderOptions(SLIDER_OPTIONS[targetEffect], DEFAULT_START_VALUE, 'block');
   }
 
   if (target && target.value === 'marvin') {
     setFilterClass('effects__preview--marvin');
 
-    updateSliderOptions(sliderOptions[targetEffect], DEFAULT_START_VALUE, 'block');
+    updateSliderOptions(SLIDER_OPTIONS[targetEffect], DEFAULT_START_VALUE, 'block');
   }
 
   if (target && target.value === 'phobos') {
     setFilterClass('effects__preview--phobos');
 
-    updateSliderOptions(sliderOptions[targetEffect], DEFAULT_START_VALUE, 'block');
+    updateSliderOptions(SLIDER_OPTIONS[targetEffect], DEFAULT_START_VALUE, 'block');
   }
 
   if (target && target.value === 'heat') {
     setFilterClass('effects__preview--heat');
 
-    updateSliderOptions(sliderOptions[targetEffect], DEFAULT_START_VALUE, 'block');
+    updateSliderOptions(SLIDER_OPTIONS[targetEffect], DEFAULT_START_VALUE, 'block');
   }
 });
